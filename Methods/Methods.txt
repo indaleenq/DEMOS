@@ -1,0 +1,118 @@
+using System;
+using System.Collections.Generic;
+
+namespace MidtermExamProg2
+{
+    internal class Program
+    {
+        static List<string> registeredStudents = new List<string>() { "ST_1234", "ST_5678", "ST_1010" }; //camelCasing
+        
+        static void Main(string[] args)
+        {
+            Console.WriteLine("LOGIN and REGISTRATION MODULE");
+            Console.WriteLine("*****************************");
+
+            ShowMainMenu(); //method call
+
+            string userInput = GetUserInput();
+
+            while (userInput != "x") //looping statement 
+            {
+                switch (userInput) //conditional statement
+                {
+                    case "1":
+                        RegisterStudent();
+                        ShowMainMenu();
+                        userInput = GetUserInput();
+                        break;
+                    case "2":
+                        Console.WriteLine("\n_________LOGIN FORM__________");
+                        Console.Write(">> enter student number to login: ");
+                        var student = Console.ReadLine();
+
+                        if (IsStudentExists(student))
+                        {
+                            Console.WriteLine("\n!!! WELCOME TO THE SYSTEM!\n\n");
+                            userInput = "x";
+                            
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n!!! student not found please try again!\n\n");
+
+                            ShowMainMenu();
+
+                            userInput = GetUserInput();
+                        }
+                        break;
+                    case "3":
+                        Console.WriteLine("\n_________REMOVE ACCOUNT__________");
+                        Console.Write(">> enter student number to be removed: ");
+                        var studentRemove = Console.ReadLine();
+
+                        if (IsStudentExists(studentRemove))
+                        {
+                            registeredStudents.Remove(studentRemove);
+                            Console.WriteLine("\n!!! successfully removed student!\n\n");
+
+                            ShowMainMenu();
+
+                            userInput = GetUserInput();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n!!! student not found please try again!\n\n");
+
+                            ShowMainMenu();
+
+                            userInput = GetUserInput();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        static void ShowMainMenu() //method signature
+        {
+            Console.WriteLine("_________MAIN MENU__________");
+            Console.WriteLine("Enter 1 to Register (if new user)");
+            Console.WriteLine("Enter 2 to Login (if already a user)");
+            Console.WriteLine("Enter 3 to Remove your account (if already a user)");
+            Console.WriteLine("Enter x to exit application");
+            Console.WriteLine("____________________________");
+        }
+
+        static string GetUserInput() //method signature
+        {
+            Console.Write(">> user input: ");
+            string input = Console.ReadLine();
+
+            //return statement
+            return input;
+        }
+
+        static bool IsStudentExists(string studentNumber) //parameters
+        {
+            int found = registeredStudents.IndexOf(studentNumber);
+
+            if (found == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        static void RegisterStudent()
+        {
+            Console.WriteLine("\n_________REGISTRATION FORM__________");
+            Console.Write(">> enter student number to register: ");
+            registeredStudents.Add(Console.ReadLine());
+            Console.WriteLine("\n!!! successfully registered student!\n\n");
+        }
+    }
+}

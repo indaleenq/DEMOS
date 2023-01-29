@@ -1,0 +1,128 @@
+using System;
+using System.Collections.Generic;
+
+namespace MidtermExamProg2
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> students = new List<string>();
+            List<string> studentsAttendance = new List<string>();
+
+            Console.WriteLine("ATTENDANCE MODULE");
+            Console.WriteLine("*****************************");
+
+            Console.WriteLine("_________MAIN MENU__________");
+            Console.WriteLine("Enter 1 to record student attendance");
+            Console.WriteLine("Enter 2 to view all student attendance");
+            Console.WriteLine("Enter 3 to add student");
+            Console.WriteLine("Enter x to exit application");
+            Console.WriteLine("____________________________");
+
+            Console.Write(">> user input: ");
+            string userInput = Console.ReadLine();
+
+            while (userInput != "x")
+            {
+                switch (userInput)
+                {
+                    case "1":
+                        Console.WriteLine("\n_________ATTENDANCE FORM__________");
+                        Console.Write(">> enter student number to record attendance: ");
+                        var student = Console.ReadLine();
+                        int found = students.IndexOf(student);
+
+                        if (found == -1)
+                        {
+                            Console.WriteLine("\n!!! student not found please try again!\n\n");
+
+                            Console.WriteLine("\n_________MAIN MENU__________");
+                            Console.WriteLine("Enter 1 to record student attendance");
+                            Console.WriteLine("Enter 2 to view all student attendance");
+                            Console.WriteLine("Enter 3 to add student");
+                            Console.WriteLine("Enter x to exit application");
+                            Console.WriteLine("____________________________");
+                            Console.Write(">> user input: ");
+                            userInput = Console.ReadLine();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n!!! student found!");
+
+                            Console.WriteLine("_________ATTENDANCE MENU__________");
+                            Console.WriteLine("Enter 1 if present");
+                            Console.WriteLine("Enter 2 if absent");
+                            Console.WriteLine("Enter 3 if excuse");
+                            Console.WriteLine("____________________________");
+                            Console.Write(">> user input: ");
+                            string attendance = Console.ReadLine();
+
+                            switch (attendance)
+                            { 
+                                case "1":
+                                    studentsAttendance.Add($"{student} : PRESENT");
+                                    break;
+                                case "2":
+                                    studentsAttendance.Add($"{student} : ABSENT");
+                                    break;
+                                case "3":
+                                    studentsAttendance.Add($"{student} : EXCUSE");
+                                    break;
+                                default:
+                                    break;
+                            }
+                            Console.WriteLine("\n!!! successfully recorded attendance!\n\n");
+
+                            Console.WriteLine("\n_________MAIN MENU__________");
+                            Console.WriteLine("Enter 1 to record student attendance");
+                            Console.WriteLine("Enter 2 to view all student attendance");
+                            Console.WriteLine("Enter 3 to add student");
+                            Console.WriteLine("Enter x to exit application");
+                            Console.WriteLine("____________________________");
+                            Console.Write(">> user input: ");
+                            userInput = Console.ReadLine();
+                        }
+
+                        break;
+                    case "2":
+                        Console.WriteLine("\n_________ALL STUDENTS ATTENDANCE__________");
+                        foreach (var attendance in studentsAttendance)
+                        {
+                            Console.WriteLine(attendance);
+                        }
+
+                        Console.WriteLine("\n_________MAIN MENU__________");
+                        Console.WriteLine("Enter 1 to record student attendance");
+                        Console.WriteLine("Enter 2 to view all student attendance");
+                        Console.WriteLine("Enter 3 to add student");
+                        Console.WriteLine("Enter x to exit application");
+                        Console.WriteLine("____________________________");
+                        Console.Write(">> user input: ");
+                        userInput = Console.ReadLine();
+
+                        break;
+                    case "3":
+                        Console.WriteLine("\n_________ADD STUDENT FORM__________");
+                        Console.Write(">> enter student number to be added: ");
+                        students.Add(Console.ReadLine());
+                        Console.WriteLine("\n!!! successfully added student!\n\n");
+
+                        Console.WriteLine("\n_________MAIN MENU__________");
+                        Console.WriteLine("Enter 1 to record student attendance");
+                        Console.WriteLine("Enter 2 to view all student attendance");
+                        Console.WriteLine("Enter 3 to add student");
+                        Console.WriteLine("Enter x to exit application");
+                        Console.WriteLine("____________________________");
+                        Console.Write(">> user input: ");
+                        userInput = Console.ReadLine();
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }
+    }
+}

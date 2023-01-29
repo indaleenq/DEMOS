@@ -1,0 +1,104 @@
+static void Main(string[] args)
+        {
+            List<string> registeredStudents = new List<string>() { "ST_1234", "ST_5678", "ST_1010"};
+
+            Console.WriteLine("LOGIN and REGISTRATION MODULE");
+            Console.WriteLine("*****************************");
+
+            Console.WriteLine("_________MAIN MENU__________");
+            Console.WriteLine("Enter 1 to Register (if new user)");
+            Console.WriteLine("Enter 2 to Login (if already a user)");
+            Console.WriteLine("Enter 3 to Remove your account (if already a user)");
+            Console.WriteLine("Enter x to exit application");
+            Console.WriteLine("____________________________");
+
+            Console.Write(">> user input: ");
+            string userInput = Console.ReadLine();
+
+            while (userInput != "x")
+            {
+                switch (userInput)
+                {
+                    case "1":
+                        Console.WriteLine("\n_________REGISTRATION FORM__________");
+                        Console.Write(">> enter student number to register: ");
+                        registeredStudents.Add(Console.ReadLine());
+                        Console.WriteLine("\n!!! successfully registered student!\n\n");
+
+                        Console.WriteLine("\n_________MAIN MENU__________");
+                        Console.WriteLine("Enter 1 to Register (if new user)");
+                        Console.WriteLine("Enter 2 to Login (if already a user)");
+                        Console.WriteLine("Enter 3 to Remove your account (if already a user)");
+                        Console.WriteLine("Enter x to exit application");
+                        Console.WriteLine("____________________________");
+                        Console.Write(">> user input: ");
+                        userInput = Console.ReadLine();
+
+                        break;
+                    case "2":
+                        Console.WriteLine("\n_________LOGIN FORM__________");
+                        Console.Write(">> enter student number to login: ");
+                        var student = Console.ReadLine();
+
+                        int found = registeredStudents.IndexOf(student);
+
+                        if (found == -1)
+                        {
+                            Console.WriteLine("\n!!! student not found please try again!\n\n");
+
+                            Console.WriteLine("\n_________MAIN MENU__________");
+                            Console.WriteLine("Enter 1 to Register (if new user)");
+                            Console.WriteLine("Enter 2 to Login (if already a user)");
+                            Console.WriteLine("Enter 3 to Remove your account (if already a user)");
+                            Console.WriteLine("Enter x to exit application");
+                            Console.WriteLine("____________________________");
+                            Console.Write(">> user input: ");
+                            userInput = Console.ReadLine();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\n!!! WELCOME TO THE SYSTEM!\n\n");
+                            userInput = "x";
+                        }
+                        break;
+                    case "3":
+                        Console.WriteLine("\n_________REMOVE ACCOUNT__________");
+                        Console.Write(">> enter student number to be removed: ");
+                        var studentRemove = Console.ReadLine();
+
+                        int foundToRemove = registeredStudents.IndexOf(studentRemove);
+
+                        if (foundToRemove == -1)
+                        {
+                            Console.WriteLine("\n!!! student not found please try again!\n\n");
+
+                            Console.WriteLine("\n_________MAIN MENU__________");
+                            Console.WriteLine("Enter 1 to Register (if new user)");
+                            Console.WriteLine("Enter 2 to Login (if already a user)");
+                            Console.WriteLine("Enter 3 to Remove your account (if already a user)");
+                            Console.WriteLine("Enter x to exit application");
+                            Console.WriteLine("____________________________");
+                            Console.Write(">> user input: ");
+                            userInput = Console.ReadLine();
+                        }
+                        else
+                        {
+                            registeredStudents.Remove(studentRemove);
+                            Console.WriteLine("\n!!! successfully removed student!\n\n");
+
+                            Console.WriteLine("\n_________MAIN MENU__________");
+                            Console.WriteLine("Enter 1 to Register (if new user)");
+                            Console.WriteLine("Enter 2 to Login (if already a user)");
+                            Console.WriteLine("Enter 3 to Remove your account (if already a user)");
+                            Console.WriteLine("Enter x to exit application");
+                            Console.WriteLine("____________________________");
+                            Console.Write(">> user input: ");
+                            userInput = Console.ReadLine();
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+        }
